@@ -1,0 +1,25 @@
+# Godot-specific
+*.import/
+*.imported/
+*.tscn.*
+*.tres.*
+.godot/
+
+*.backup/
+*.bak/
+
+*.mono*
+*.msvc*
+*.pdb
+
+*.tmp
+*.pdb
+
+*.import.cfg
+
+.cache/
+logs/
+
+export/
+.vscode
+.editorconfig
