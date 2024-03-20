@@ -6,7 +6,7 @@ namespace Entities
   public partial class Player : CharacterBody2D
   {
     [Export]
-    public int Speed { get; set; } = 400;
+    public int Speed { get; set; } = 200;
     [Export]
     public float JumpForce { get; set; } = 400;
     private AnimatedSprite2D anim;
@@ -42,6 +42,11 @@ namespace Entities
 
       Velocity = velocity;
       MoveAndSlide();
+    }
+
+    public void TakeCherry()
+    {
+      GD.Print("Pegou papai");
     }
 
     public void UpdateAnimation()
