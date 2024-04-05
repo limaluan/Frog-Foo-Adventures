@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dqx4sgfygwyjo"]
+[gd_scene load_steps=55 format=3 uid="uid://dqx4sgfygwyjo"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.cs" id="1_6gm4u"]
 [ext_resource type="Texture2D" uid="uid://8rp3x7pljpen" path="res://assets/sprites/Main Characters/Ninja Frog/Double Jump (32x32).png" id="1_m72aa"]
@@ -348,20 +348,39 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5df6g"]
-size = Vector2(23, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fybtf"]
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w127s"]
+radius = 2.02984
+height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_6gm4u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_e71dt")
 animation = &"idle"
+frame = 3
+frame_progress = 0.698623
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4)
-shape = SubResource("RectangleShape2D_5df6g")
+position = Vector2(0.5, 3)
+shape = SubResource("CapsuleShape2D_fybtf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_w127s")
+debug_color = Color(0.980392, 0.101961, 0.25098, 0.419608)
+
+[connection signal="body_entered" from="HitBox" to="." method="OnHitBoxBodyEntered"]

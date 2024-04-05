@@ -6,7 +6,7 @@ namespace Entities
   public partial class Player : CharacterBody2D
   {
     [Export]
-    public int Speed { get; set; } = 400;
+    public int Speed { get; set; } = 200;
     [Export]
     public float JumpForce { get; set; } = 400;
     private AnimatedSprite2D anim;
@@ -22,7 +22,7 @@ namespace Entities
       UpdateAnimation();
     }
 
-    public void UpdateMovement(double delta)
+    private void UpdateMovement(double delta)
     {
       Vector2 velocity = Velocity;
 
@@ -44,7 +44,12 @@ namespace Entities
       MoveAndSlide();
     }
 
-    public void UpdateAnimation()
+    public void TakeCherry()
+    {
+      GD.Print("Pegou papai");
+    }
+
+    private void UpdateAnimation()
     {
       // Lógica de Animação ao correr
       if (Velocity.X != 0 && IsOnFloor())
@@ -74,6 +79,17 @@ namespace Entities
       else if (Velocity.X > 0)
       {
         anim.FlipH = false;
+      }
+    }
+
+    public void OnHitBoxBodyEntered(Node2D body)
+    {
+      if (body.HasMethod("Die"))
+      {
+        body.Call("Die");
+        Vector2 velocity = Velocity;
+        velocity.Y = JumpForce * -1;
+        Velocity = velocity;
       }
     }
   }

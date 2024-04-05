@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="First Singular Game"
-run/main_scene="res://scenes/tests_scenes.tscn"
+config/name="Frog Foo Adventures"
+run/main_scene="res://scenes/levels/level_01.tscn"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
